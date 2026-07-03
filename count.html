@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Mandiri UNTAD 2026</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    /* Menambahkan background gambar kampus UNTAD dengan overlay gelap */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://untad.ac.id/wp-content/uploads/2024/07/Header-Web-Untad-scaled.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card{
+    width:420px;
+    background:#fff;
+    border-radius:12px; /* Sedikit diperhalus sudutnya */
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+
+.countdown{
+    background:#0d5ca6;
+    color:#fff;
+    display:flex;
+    justify-content:space-around;
+    padding:20px 10px;
+    text-align:center;
+}
+
+.item span:first-child{
+    display:block;
+    font-size:18px;
+}
+
+.number{
+    font-size:48px;
+    font-weight:bold;
+}
+
+.info{
+    padding:25px;
+    text-align:center; /* Rata tengah agar lebih seimbang dengan background */
+}
+
+.info h2{
+    margin:0 0 15px;
+    color: #333;
+    font-size: 20px;
+}
+
+.info p{
+    color:#555;
+    font-size:20px;
+    margin:0;
+    line-height: 1.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="countdown">
+    <div class="item">
+        <span>Hari</span>
+        <div class="number" id="hari">00</div>
+    </div>
+
+    <div class="item">
+        <span>Jam</span>
+        <div class="number" id="jam">00</div>
+    </div>
+
+    <div class="item">
+        <span>Menit</span>
+        <div class="number" id="menit">00</div>
+    </div>
+
+    <div class="item">
+        <span>Detik</span>
+        <div class="number" id="detik">00</div>
+    </div>
+</div>
+
+<div class="info">
+<h2>HASIL SELEKSI MANDIRI UNTAD 2026</h2>
+
+<p>
+DIBUKA TANGGAL <br><b>7 JULI 2026</b><br>
+PUKUL <b>15.00 WIB</b>
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const target = new Date("July 7, 2026 15:00:00").getTime();
+
+setInterval(function(){
+
+let now = new Date().getTime();
+
+let selisih = target - now;
+
+if(selisih <= 0){
+document.querySelector(".countdown").innerHTML="<h2 style='color:white;width:100%;text-align:center;margin:0;'>PENGUMUMAN SUDAH DIBUKA</h2>";
+return;
+}
+
+let hari=Math.floor(selisih/(1000*60*60*24));
+let jam=Math.floor((selisih%(1000*60*60*24))/(1000*60*60));
+let menit=Math.floor((selisih%(1000*60*60))/(1000*60));
+let detik=Math.floor((selisih%(1000*60))/1000);
+
+document.getElementById("hari").innerHTML=hari;
+document.getElementById("jam").innerHTML=jam;
+document.getElementById("menit").innerHTML=menit;
+document.getElementById("detik").innerHTML=detik;
+
+},1000);
+
+</script>
+
+</body>
+</html>
