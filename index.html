@@ -7,61 +7,74 @@
 
 <style>
 body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    /* Menambahkan background gambar kampus UNTAD dengan overlay gelap */
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('https://untad.ac.id/wp-content/uploads/2024/07/Header-Web-Untad-scaled.jpg') no-repeat center center fixed;
-    background-size: cover;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    /* Menambahkan background gambar kampus UNTAD dengan overlay gelap */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('https://untad.ac.id/wp-content/uploads/2024/07/Header-Web-Untad-scaled.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
 }
 
 .card{
-    width:420px;
-    background:#fff;
-    border-radius:12px; /* Sedikit diperhalus sudutnya */
-    overflow:hidden;
-    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    width:420px;
+    background:#fff;
+    border-radius:12px; /* Sedikit diperhalus sudutnya */
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
 }
 
 .countdown{
-    background:#0d5ca6;
-    color:#fff;
-    display:flex;
-    justify-content:space-around;
-    padding:20px 10px;
-    text-align:center;
+    background:#0d5ca6;
+    color:#fff;
+    display:flex;
+    justify-content:space-around;
+    padding:20px 10px;
+    text-align:center;
 }
 
 .item span:first-child{
-    display:block;
-    font-size:18px;
+    display:block;
+    font-size:18px;
 }
 
 .number{
-    font-size:48px;
-    font-weight:bold;
+    font-size:48px;
+    font-weight:bold;
 }
 
 .info{
-    padding:25px;
-    text-align:center; /* Rata tengah agar lebih seimbang dengan background */
+    padding:25px;
+    text-align:center; /* Rata tengah agar lebih seimbang dengan background */
 }
 
 .info h2{
-    margin:0 0 15px;
-    color: #333;
-    font-size: 20px;
+    margin:0 0 15px;
+    color: #333;
+    font-size: 20px;
 }
 
 .info p{
-    color:#555;
-    font-size:20px;
-    margin:0;
-    line-height: 1.5;
+    color:#555;
+    font-size:20px;
+    margin:0;
+    line-height: 1.5;
+}
+
+/* Style tambahan untuk info tiktok agar terlihat menarik */
+.tiktok-info {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc;
+    font-size: 16px;
+    color: #444;
+}
+
+.tiktok-info b {
+    color: #010101; /* Warna khas tulisan TikTok */
 }
 </style>
 </head>
@@ -71,25 +84,25 @@ body{
 <div class="card">
 
 <div class="countdown">
-    <div class="item">
-        <span>Hari</span>
-        <div class="number" id="hari">00</div>
-    </div>
+    <div class="item">
+        <span>Hari</span>
+        <div class="number" id="hari">00</div>
+    </div>
 
-    <div class="item">
-        <span>Jam</span>
-        <div class="number" id="jam">00</div>
-    </div>
+    <div class="item">
+        <span>Jam</span>
+        <div class="number" id="jam">00</div>
+    </div>
 
-    <div class="item">
-        <span>Menit</span>
-        <div class="number" id="menit">00</div>
-    </div>
+    <div class="item">
+        <span>Menit</span>
+        <div class="number" id="menit">00</div>
+    </div>
 
-    <div class="item">
-        <span>Detik</span>
-        <div class="number" id="detik">00</div>
-    </div>
+    <div class="item">
+        <span>Detik</span>
+        <div class="number" id="detik">00</div>
+    </div>
 </div>
 
 <div class="info">
@@ -100,18 +113,23 @@ DIBUKA TANGGAL <br><b>7 JULI 2026</b><br>
 PUKUL <b>16.00 WIB</b>
 </p>
 
+<!-- Bagian Info TikTok Baru -->
+<div class="tiktok-info">
+    Info selanjutnya bisa join live TikTok:<br>
+    <b>@zulkifli__22</b>
+</div>
+
 </div>
 
 </div>
 
 <script>
-
-const target = new Date("July 7, 2026 16:00:00").getTime();
+// Menggunakan format ISO dengan +07:00 agar waktu WIB dikunci dengan benar di semua perangkat
+const target = new Date("2026-07-07T16:00:00+07:00").getTime();
 
 setInterval(function(){
 
 let now = new Date().getTime();
-
 let selisih = target - now;
 
 if(selisih <= 0){
@@ -124,10 +142,11 @@ let jam=Math.floor((selisih%(1000*60*60*24))/(1000*60*60));
 let menit=Math.floor((selisih%(1000*60*60))/(1000*60));
 let detik=Math.floor((selisih%(1000*60))/1000);
 
-document.getElementById("hari").innerHTML=hari;
-document.getElementById("jam").innerHTML=jam;
-document.getElementById("menit").innerHTML=menit;
-document.getElementById("detik").innerHTML=detik;
+// Ditambahkan padStart agar format angka selalu dua digit (misal: 05 jam, bukan 5 jam)
+document.getElementById("hari").innerHTML=hari.toString().padStart(2, '0');
+document.getElementById("jam").innerHTML=jam.toString().padStart(2, '0');
+document.getElementById("menit").innerHTML=menit.toString().padStart(2, '0');
+document.getElementById("detik").innerHTML=detik.toString().padStart(2, '0');
 
 },1000);
 
