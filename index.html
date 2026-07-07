@@ -63,6 +63,19 @@ body{
     margin:0;
     line-height: 1.5;
 }
+
+/* Style tambahan untuk info tiktok agar terlihat menarik */
+.tiktok-info {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc;
+    font-size: 16px;
+    color: #444;
+}
+
+.tiktok-info b {
+    color: #010101; /* Warna khas tulisan TikTok */
+}
 </style>
 </head>
 
@@ -100,22 +113,27 @@ DIBUKA TANGGAL <br><b>7 JULI 2026</b><br>
 PUKUL <b>16.00 WIB</b>
 </p>
 
+<!-- Bagian Info TikTok Baru -->
+<div class="tiktok-info">
+    Info selanjutnya bisa join live TikTok:<br>
+    <b>@zulkifli__22</b>
+</div>
+
 </div>
 
 </div>
 
 <script>
-
-const target = new Date("July 7, 2026 16:00:00").getTime();
+// Menggunakan format ISO dengan +07:00 agar waktu WIB dikunci dengan benar di semua perangkat
+const target = new Date("2026-07-07T16:00:00+07:00").getTime();
 
 setInterval(function(){
 
 let now = new Date().getTime();
-
 let selisih = target - now;
 
 if(selisih <= 0){
-document.querySelector(".countdown").innerHTML="<h2 style='color:white;width:100%;text-align:center;margin:0;'>PENGUMUMAN SUDAH DIBUKA</h2>";
+document.querySelector(".countdown").innerHTML="<h2 style='color:white;width:100%;text-align:center;margin:0;'>https://admission.untad.ac.id/</h2>";
 return;
 }
 
@@ -124,10 +142,11 @@ let jam=Math.floor((selisih%(1000*60*60*24))/(1000*60*60));
 let menit=Math.floor((selisih%(1000*60*60))/(1000*60));
 let detik=Math.floor((selisih%(1000*60))/1000);
 
-document.getElementById("hari").innerHTML=hari;
-document.getElementById("jam").innerHTML=jam;
-document.getElementById("menit").innerHTML=menit;
-document.getElementById("detik").innerHTML=detik;
+// Ditambahkan padStart agar format angka selalu dua digit (misal: 05 jam, bukan 5 jam)
+document.getElementById("hari").innerHTML=hari.toString().padStart(2, '0');
+document.getElementById("jam").innerHTML=jam.toString().padStart(2, '0');
+document.getElementById("menit").innerHTML=menit.toString().padStart(2, '0');
+document.getElementById("detik").innerHTML=detik.toString().padStart(2, '0');
 
 },1000);
 
