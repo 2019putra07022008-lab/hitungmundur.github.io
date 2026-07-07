@@ -9,10 +9,7 @@
 body{
     margin:0;
     font-family:Arial, Helvetica, sans-serif;
-    /* Menambahkan background gambar kampus UNTAD dengan overlay gelap */
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                url('https://untad.ac.id/wp-content/uploads/2024/07/Header-Web-Untad-scaled.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background:#f4f4f4;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -22,9 +19,9 @@ body{
 .card{
     width:420px;
     background:#fff;
-    border-radius:12px;
+    border-radius:8px;
     overflow:hidden;
-    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
 .countdown{
@@ -47,33 +44,17 @@ body{
 }
 
 .info{
-    padding:25px;
-    text-align:center;
+    padding:20px;
 }
 
 .info h2{
     margin:0 0 15px;
-    color: #333;
-    font-size: 20px;
 }
 
 .info p{
-    color:#555;
-    font-size:20px;
+    color:#666;
+    font-size:22px;
     margin:0;
-    line-height: 1.5;
-}
-
-.tiktok-info {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px dashed #ccc;
-    font-size: 16px;
-    color: #444;
-}
-
-.tiktok-info b {
-    color: #010101;
 }
 </style>
 </head>
@@ -108,30 +89,26 @@ body{
 <h2>HASIL SELEKSI MANDIRI UNTAD 2026</h2>
 
 <p>
-DIBUKA TANGGAL <br><b>7 JULI 2026</b><br>
-PUKUL <b>16.00 WIT</b>
+DIBUKA TANGGAL <b>7 JULI 2026</b><br>
+PUKUL <b>15.00 WIB</b>
 </p>
-
-<div class="tiktok-info">
-    mohon maaf link ini cuman buat liat hitung mundur:<br>
-    <b></b>
-</div>
 
 </div>
 
 </div>
 
 <script>
-// Mengunci target waktu ke jam 17:00 WIT (+09:00)
-const target = new Date("2026-07-07T16:00:00+09:00").getTime();
+
+const target = new Date("July 7, 2026 16:00:00").getTime();
 
 setInterval(function(){
 
 let now = new Date().getTime();
+
 let selisih = target - now;
 
 if(selisih <= 0){
-document.querySelector(".countdown").innerHTML="<h2 style='color:white;width:100%;text-align:center;margin:0;'>https://admission.untad.ac.id/</h2>";
+document.querySelector(".countdown").innerHTML="<h2 style='color:white;width:100%;text-align:center;'>PENGUMUMAN SUDAH DIBUKA</h2>";
 return;
 }
 
@@ -140,12 +117,13 @@ let jam=Math.floor((selisih%(1000*60*60*24))/(1000*60*60));
 let menit=Math.floor((selisih%(1000*60*60))/(1000*60));
 let detik=Math.floor((selisih%(1000*60))/1000);
 
-document.getElementById("hari").innerHTML=hari.toString().padStart(2, '0');
-document.getElementById("jam").innerHTML=jam.toString().padStart(2, '0');
-document.getElementById("menit").innerHTML=menit.toString().padStart(2, '0');
-document.getElementById("detik").innerHTML=detik.toString().padStart(2, '0');
+document.getElementById("hari").innerHTML=hari;
+document.getElementById("jam").innerHTML=jam;
+document.getElementById("menit").innerHTML=menit;
+document.getElementById("detik").innerHTML=detik;
 
 },1000);
+
 </script>
 
 </body>
