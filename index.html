@@ -90,7 +90,7 @@ body{
 
 <p>
 DIBUKA TANGGAL <b>7 JULI 2026</b><br>
-PUKUL <b>16.00 WIT</b>
+PUKUL <b>15.00 WIB</b>
 </p>
 
 </div>
@@ -98,41 +98,32 @@ PUKUL <b>16.00 WIT</b>
 </div>
 
 <script>
-// Mengunci target waktu ke 16:00 WIT (UTC+9)
-const target = new Date("2026-07-07T16:00:00+09:00").getTime();
 
-// URL Tujuan resmi Admission UNTAD
-const urlTujuan = "https://admission.untad.ac.id/";
+const target = new Date("July 7, 2026 15:00:00").getTime();
 
-const interval = setInterval(function(){
+setInterval(function(){
 
-    let now = new Date().getTime();
-    let selisih = target - now;
+let now = new Date().getTime();
 
-    // Jika waktu sudah habis atau terlewat
-    if(selisih <= 0){
-        clearInterval(interval); // Hentikan hitungan mundur
-        
-        // Mengubah teks visual sebelum pindah halaman
-        document.querySelector(".countdown").innerHTML="<h2 style='color:white;width:100%;text-align:center;margin:0;'>MENGALIHKAN...</h2>";
-        
-        // Pindah otomatis ke website admission UNTAD
-        window.location.href = urlTujuan; 
-        return;
-    }
+let selisih = target - now;
 
-    let hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
-    let jam = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
-    let detik = Math.floor((selisih % (1000 * 60)) / 1000);
+if(selisih <= 0){
+document.querySelector(".countdown").innerHTML="<h2 style='color:white;width:100%;text-align:center;'>PENGUMUMAN SUDAH DIBUKA</h2>";
+return;
+}
 
-    // Menampilkan angka dengan format 2 digit
-    document.getElementById("hari").innerHTML = hari.toString().padStart(2, '0');
-    document.getElementById("jam").innerHTML = jam.toString().padStart(2, '0');
-    document.getElementById("menit").innerHTML = menit.toString().padStart(2, '0');
-    document.getElementById("detik").innerHTML = detik.toString().padStart(2, '0');
+let hari=Math.floor(selisih/(1000*60*60*24));
+let jam=Math.floor((selisih%(1000*60*60*24))/(1000*60*60));
+let menit=Math.floor((selisih%(1000*60*60))/(1000*60));
+let detik=Math.floor((selisih%(1000*60))/1000);
 
-}, 1000);
+document.getElementById("hari").innerHTML=hari;
+document.getElementById("jam").innerHTML=jam;
+document.getElementById("menit").innerHTML=menit;
+document.getElementById("detik").innerHTML=detik;
+
+},1000);
+
 </script>
 
 </body>
